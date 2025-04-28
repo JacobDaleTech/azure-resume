@@ -140,3 +140,6 @@ providers.tf
 
 #sln
 *.sln
+
+# Ignore frontend config with secrets
+frontend/config.js

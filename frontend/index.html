@@ -25,6 +25,7 @@
    <!-- Script
    ================================================== -->
    <script src="js/modernizr.js"></script>
+   <script src="config.js"></script>
    <script src="main.js"></script>
 
    <!-- Favicons
@@ -296,7 +297,7 @@
     <script>
       async function updateVisitorCount() {
         try {
-          const response = await fetch("https://jacobdaleresume.azurewebsites.net/api/HttpTrigger");
+          const response = await fetch(functionUrl);
           const data = await response.json();
           document.getElementById("counter").textContent = data.count;
         } catch (error) {
