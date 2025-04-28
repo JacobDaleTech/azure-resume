@@ -49,6 +49,7 @@ coverage.xml
 *.cover
 .hypothesis/
 .pytest_cache/
+test_get_resume_counter.py
 
 # Translations
 *.mo
@@ -136,3 +137,6 @@ __azurite_db*__.json
 
 #terraform
 providers.tf
+
+#sln
+azure-resume.sln
