@@ -19,8 +19,13 @@ jobs:
     - name: Upload to blob storage
       uses: azure/CLI@v1
       with:
-        inlineScript: |
-            az storage blob upload-batch --account-name jacobdaleazureresume --auth-mode key -d '$web' -s frontend/
+            inlineScript: |
+              az storage blob upload-batch \
+                --account-name jacobdaleazureresume \
+                --account-key ${{ secrets.AZURE_STORAGE_ACCOUNT_KEY}} \
+                --destination '$web' \
+                --source frontend/
+        
     - name: Purge CDN endpoint
       run: |
         curl -X POST "https://api.cloudflare.com/client/v4/zones/${{ secrets.CLOUDFLARE_ZONE_ID }}/purge_cache" \
