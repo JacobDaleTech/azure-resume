@@ -139,4 +139,4 @@ __azurite_db*__.json
 providers.tf
 
 #sln
-azure-resume.sln
+*.sln
