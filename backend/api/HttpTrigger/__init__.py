@@ -36,3 +36,4 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
             f"Function error: {str(e)}",
             status_code=500
         )
+#Testing backend workflow
