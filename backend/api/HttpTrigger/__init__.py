@@ -36,4 +36,4 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
             f"Function error: {str(e)}",
             status_code=500
         )
-#Testing workflow again and again and again and again and again and again and again and again and again and again
+#Testing workflow again and again and again and again and again and again and again and again and again and again and again
