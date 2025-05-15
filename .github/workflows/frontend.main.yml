@@ -24,7 +24,8 @@ jobs:
                 --account-name jacobdaleazureresume \
                 --account-key ${{ secrets.AZURE_STORAGE_ACCOUNT_KEY}} \
                 --destination '$web' \
-                --source frontend/
+                --source frontend/ \
+                --overwrite
         
     - name: Purge CDN endpoint
       run: |

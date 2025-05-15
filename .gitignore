@@ -135,8 +135,23 @@ __queuestorage__
 __azurite_db*__.json
 .python_packages
 
-#terraform
-providers.tf
+# Terraform state
+terraform.tfstate
+terraform.tfstate.backup
+*.tfstate.*
+crash.log
+
+# Terraform working dir
+.terraform/
+.terraform.lock.hcl
+
+# Local override files
+terraform.tfvars
+*.tfvars
+
+# IDE/editor junk
+.vscode/
+*.log
 
 #sln
 *.sln
