@@ -16,36 +16,44 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-    - name: Login to Azure
-      uses: azure/login@v2
-      with:
-        creds: ${{ secrets.AZURE_CREDENTIALS }}  # Still useful for other az CLI work
+      - name: Login to Azure
+        uses: azure/login@v2
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-    - name: Setup Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: ${{ env.PYTHON_VERSION }}
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
 
-    - name: Resolve dependencies with pip
-      working-directory: ./backend/api
-      run: |
-        python -m pip install --upgrade pip
-        pip install -r requirements.txt --target=".python_packages/lib/site-packages"
+      - name: Resolve dependencies with pip
+        working-directory: ./backend/api
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt --target=".python_packages/lib/site-packages"
 
-    - name: Install pytest and requests
-      working-directory: ./backend
-      run: |
-        pip install pytest requests
-        pytest tests/ -v
+      - name: Install test deps and run debug + test
+        working-directory: ./backend
+        run: |
+          pip install pytest requests
+          
+          echo "Checking test folder..."
+          ls -la tests
+          
+          echo "Showing test_get_resume_counter.py"
+          cat tests/test_get_resume_counter.py
 
-    - name: Deploy to Azure Function App
-      uses: Azure/functions-action@v1
-      with:
-        app-name: ${{ env.AZURE_FUNCTIONAPP_NAME }}
-        package: ${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}
-        publish-profile: ${{ secrets.AZURE_PUBLISH_PROFILE}}
-        scm-do-build-during-deployment: true
-        enable-oryx-build: true
+          echo "Running pytest..."
+          python -m pytest tests/ -v
+
+      - name: Deploy to Azure Function App
+        uses: Azure/functions-action@v1
+        with:
+          app-name: ${{ env.AZURE_FUNCTIONAPP_NAME }}
+          package: ${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}
+          publish-profile: ${{ secrets.AZURE_PUBLISH_PROFILE }}
+          scm-do-build-during-deployment: true
+          enable-oryx-build: true
