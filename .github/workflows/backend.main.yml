@@ -7,7 +7,7 @@ on:
       - 'backend/**'
 
 env:
-  AZURE_FUNCTIONAPP_NAME: 'jacobdaleresume'
+  AZURE_FUNCTIONAPP_NAME: 'pyresumecounter'
   AZURE_FUNCTIONAPP_PACKAGE_PATH: 'backend'
   PYTHON_VERSION: '3.12'
 
@@ -38,7 +38,7 @@ jobs:
     - name: Install pytest and requests
       working-directory: ./backend
       run: |
-        pip install pytest requests
+        pip install pytest request
         pytest tests/
 
     - name: Deploy to Azure Function App
