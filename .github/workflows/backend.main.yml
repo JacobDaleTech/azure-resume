@@ -52,9 +52,9 @@ jobs:
 
       - name: Zip backend code
         run: |
-          cd backend
+          cd backend/api
           zip -r ../backend.zip .
-          cd ..
+          cd ../../
 
       - name: Deploy via az CLI
         run: |
