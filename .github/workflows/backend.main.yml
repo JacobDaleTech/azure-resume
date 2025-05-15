@@ -10,7 +10,8 @@ env:
   AZURE_FUNCTIONAPP_NAME: 'pyresumecounter'
   AZURE_FUNCTIONAPP_PACKAGE_PATH: 'backend'
   PYTHON_VERSION: '3.12'
-
+  AZURE_FUNCTION_URL: ${{ secrets.AZURE_FUNCTION_URL }}
+  
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
