@@ -26,13 +26,6 @@ jobs:
                 --destination '$web' \
                 --source frontend/ \
                 --overwrite
-        
-    - name: Purge CDN endpoint
-      run: |
-        curl -X POST "https://api.cloudflare.com/client/v4/zones/${{ secrets.CLOUDFLARE_ZONE_ID }}/purge_cache" \
-          -H "Authorization: Bearer ${{ secrets.CLOUDFLARE_PURGE_API }}" \
-          -H "Content-Type: application/json" \
-          --data '{"purge_everything":true}'
 
   # Azure logout
     - name: logout
